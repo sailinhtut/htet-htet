@@ -1,0 +1,3023 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<title id="page-title">Happy Birthday 🎂</title>
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Dancing+Script:wght@400;600;700&family=Noto+Serif+JP:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.3.1/swiper-bundle.min.css"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.3.1/swiper-bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+
+		<script>
+			// ╔══════════════════════════════════════════════════════════════╗
+			// ║              🌸  GLOBAL CUSTOMIZATION CONFIG  🌸             ║
+			// ║   Change any value below to personalise the whole page!      ║
+			// ╚══════════════════════════════════════════════════════════════╝
+			const CONFIG = {
+				// ── WHO IS SHE ─────────────────────────────────────────────────
+				name: 'Htet Htet Aung', // Full name (used in hero + finale)
+				nickname: 'My Love', // Pet name
+				age: 23, // Age she is turning
+				birthday: '2026-03-22', // ISO date  YYYY-MM-DD
+				location: 'Nara, Japan', // Where she lives
+				locationEmoji: '⛩️', // Emoji next to location
+				yearsTogether: 6, // How many years together
+
+				// ── LOVE LETTER ────────────────────────────────────────────────
+				// Each string = one paragraph
+				letter: [
+					'My darling Htet Htet Aung, on this beautiful day that you were born, I want you to know that the world became infinitely more wonderful because of you. Your smile is my sunrise, your laughter my favourite song.',
+					'Six years. Six years of adventures, quiet mornings and midnight conversations, of growing together through every season. Watching you bloom into the extraordinary woman you are at 23, living your dreams in the ancient streets of Nara, fills my heart with the most profound joy.',
+					'You have given colour to my grey days, warmth to my coldest nights, and meaning to every single breath I take. No distance can dim what lives between us. Today is yours — every candle, every wish, every sparkle — it all belongs to you. I love you more than all the cherry blossoms in all the springs in all of Japan.',
+				],
+
+				// ── CAROUSEL SLIDES ────────────────────────────────────────────
+				// To use a real photo set: photo: "https://your-image-url.jpg"
+				// Leave photo as null to keep the emoji gradient placeholder.
+				slides: [
+					{
+						emoji: '🌸',
+						gradient: '135deg,#ff6b8a,#c084fc,#f7c948',
+						photo: './assets/images/1.jpg',
+						caption: 'The day we first met',
+						sub: 'The beginning of everything ✨',
+					},
+					{
+						emoji: '🍜',
+						gradient: '135deg,#f7c948,#ff6b8a,#8b1a4a',
+						photo: './assets/images/2.jpg',
+						caption: 'Our first adventure together',
+						sub: 'Lost together, found together 🗺️',
+					},
+					{
+						emoji: '🌙',
+						gradient: '135deg,#c084fc,#ff6b8a,#ffb3c6',
+						photo: './assets/images/3.jpg',
+						caption: 'Stargazing nights',
+						sub: 'You outshine every star 🌟',
+					},
+					{
+						emoji: '🌹',
+						gradient: '135deg,#1a0a1e,#8b1a4a,#c084fc',
+						photo: './assets/images/4.jpg',
+						caption: 'Dancing in the rain',
+						sub: 'Every moment a gift 💝',
+					},
+					{
+						emoji: '🍓',
+						gradient: '135deg,#ff9a9e,#fecfef,#feada6',
+						photo: './assets/images/5.jpg',
+						caption: 'Lazy Sunday mornings',
+						sub: 'My favourite place is beside you ☀️',
+					},
+					{
+						emoji: '🦋',
+						gradient: '135deg,#a18cd1,#fbc2eb,#f7c948',
+						photo: './assets/images/6.jpg',
+						caption: 'Six years & counting',
+						sub: 'Forever & always 💫',
+					},
+				],
+
+				// ── RELATIONSHIP TIMELINE ──────────────────────────────────────
+				milestones: [
+					{ year: 'Year 1', icon: '💘', text: 'We fell in love' },
+					{ year: 'Year 2', icon: '🌏', text: 'Our first trip together' },
+					{
+						year: 'Year 3',
+						icon: '🌙',
+						text: 'Through every storm, still together',
+					},
+					{ year: 'Year 4', icon: '🌸', text: 'You moved to beautiful Nara' },
+					{ year: 'Year 5', icon: '💌', text: 'Love letters across the distance' },
+					{
+						year: 'Year 6',
+						icon: '⛩️',
+						text: "Six years — and I'd choose you again",
+					},
+				],
+
+				// ── BIRTHDAY WISHES ────────────────────────────────────────────
+				wishes: [
+					{
+						emoji: '🌟',
+						text: "May every dream you've ever dared to dream come true this year and beyond",
+					},
+					{ emoji: '💫', text: 'Endless joy and laughter every single day' },
+					{ emoji: '🌸', text: 'Health that lets you dance through life' },
+					{ emoji: '✈️', text: 'Adventures that take your breath away' },
+					{ emoji: '💖', text: 'Love that grows deeper every morning' },
+					{ emoji: '🦋', text: 'Freedom to be fully, beautifully yourself' },
+				],
+
+				// ── NARA SECTION ───────────────────────────────────────────────
+				naraMessage:
+					'Somewhere in the ancient city of Nara, among the sacred deer and glowing lanterns, lives the girl who holds my entire heart.',
+				naraPoem: [
+					'Even miles apart,',
+					'Cherry blossoms fall for both—',
+					'One heart, two skies.',
+				],
+
+				// ── SONG ────────────────────────────────────────────────────────
+				// Plays the Happy Birthday melody via Web Audio API (no CDN needed).
+				// To use your own song: set customSongUrl to a direct .mp3 / .ogg link.
+				customSongUrl: './assets/audios/birthday_song.mp3', // e.g. "https://example.com/her-favourite-song.mp3"
+				songLabel: 'Happy Birthday ♪',
+			};
+		</script>
+
+		<style>
+			:root {
+				--rose: #ff6b8a;
+				--blush: #ffb3c6;
+				--gold: #f7c948;
+				--cream: #fff8f0;
+				--deep: #1a0a1e;
+				--wine: #8b1a4a;
+				--lilac: #c084fc;
+			}
+			*,
+			*::before,
+			*::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+				overflow-x: hidden;
+			}
+			body {
+				background: var(--deep);
+				font-family: 'Cormorant Garamond', serif;
+				color: var(--cream);
+				overflow-x: hidden;
+				cursor: none;
+			}
+
+			/* Cursor */
+			.cursor {
+				width: 20px;
+				height: 20px;
+				border: 2px solid var(--rose);
+				border-radius: 50%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				pointer-events: none;
+				z-index: 9999;
+				transform: translate(-50%, -50%);
+			}
+			.cursor-dot {
+				width: 6px;
+				height: 6px;
+				background: var(--gold);
+				border-radius: 50%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				pointer-events: none;
+				z-index: 9999;
+				transform: translate(-50%, -50%);
+			}
+			@media (hover: none) {
+				.cursor,
+				.cursor-dot {
+					display: none;
+				}
+				body {
+					cursor: auto;
+				}
+			}
+
+			/* Hearts */
+			.hearts-wrap {
+				position: fixed;
+				inset: 0;
+				pointer-events: none;
+				z-index: 2;
+				overflow: hidden;
+			}
+			.heart {
+				position: absolute;
+				bottom: -60px;
+				animation: floatHeart linear infinite;
+				opacity: 0;
+			}
+			.heart::before,
+			.heart::after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: var(--rose);
+				border-radius: 50% 50% 0 0;
+			}
+			.heart::before {
+				left: -50%;
+				transform-origin: 100% 100%;
+				transform: rotate(-45deg);
+			}
+			.heart::after {
+				right: -50%;
+				transform-origin: 0% 100%;
+				transform: rotate(45deg);
+			}
+
+			/* ── HERO ── */
+			#hero {
+				position: relative;
+				width: 100%;
+				height: 100svh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+			#three-canvas {
+				position: absolute;
+				inset: 0;
+				width: 100% !important;
+				height: 100% !important;
+			}
+			#particles-js {
+				position: absolute;
+				inset: 0;
+				z-index: 1;
+			}
+			.hero-content {
+				position: relative;
+				z-index: 10;
+				text-align: center;
+				padding: 0 20px;
+			}
+
+			.hero-name {
+				font-family: 'Dancing Script', cursive;
+				font-size: clamp(2.6rem, 13vw, 7rem);
+				font-weight: 700;
+				line-height: 1.05;
+				background: linear-gradient(
+					135deg,
+					#fff 0%,
+					var(--blush) 30%,
+					var(--gold) 60%,
+					var(--rose) 100%
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				opacity: 0;
+				animation: fadeUp 1s ease 0.2s forwards;
+				filter: drop-shadow(0 0 40px rgba(255, 107, 138, 0.6));
+			}
+			.hero-hb {
+				font-family: 'Playfair Display', serif;
+				font-style: italic;
+				font-size: clamp(0.95rem, 4vw, 1.8rem);
+				color: var(--blush);
+				margin-top: 8px;
+				opacity: 0;
+				animation: fadeUp 1s ease 0.6s forwards;
+				letter-spacing: 0.04em;
+			}
+			.hero-badge {
+				display: inline-block;
+				background: linear-gradient(135deg, var(--gold), #e8a020);
+				color: var(--deep);
+				font-family: 'Playfair Display', serif;
+				font-size: clamp(0.62rem, 2vw, 0.78rem);
+				font-weight: 700;
+				letter-spacing: 0.25em;
+				text-transform: uppercase;
+				padding: 6px 18px;
+				border-radius: 50px;
+				margin-top: 14px;
+				opacity: 0;
+				animation: fadeUp 1s ease 0.9s forwards;
+			}
+			.hero-loc {
+				margin-top: 10px;
+				font-size: clamp(0.72rem, 2.4vw, 0.88rem);
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.45);
+				opacity: 0;
+				animation: fadeUp 1s ease 1.2s forwards;
+			}
+			.scroll-hint {
+				position: absolute;
+				bottom: 26px;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 10;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 8px;
+				opacity: 0;
+				animation: fadeIn 1s ease 2.4s forwards;
+			}
+			.scroll-hint span {
+				font-size: 0.62rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.35);
+			}
+			.scroll-line {
+				width: 2px;
+				height: 38px;
+				background: linear-gradient(to bottom, transparent, var(--rose));
+				animation: scrollPulse 2s ease infinite;
+			}
+
+			/* ── SECTIONS ── */
+			section {
+				position: relative;
+				padding: 78px 0;
+				overflow: hidden;
+			}
+			.sec-inner {
+				max-width: 520px;
+				margin: 0 auto;
+				padding: 0 22px;
+			}
+			.sec-tag {
+				font-size: 0.66rem;
+				letter-spacing: 0.3em;
+				text-transform: uppercase;
+				color: var(--gold);
+				margin-bottom: 12px;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.sec-tag::before,
+			.sec-tag::after {
+				content: '';
+				flex: 1;
+				height: 1px;
+			}
+			.sec-tag::before {
+				background: linear-gradient(to right, transparent, var(--gold));
+			}
+			.sec-tag::after {
+				background: linear-gradient(to left, transparent, var(--gold));
+			}
+			.sec-title {
+				font-family: 'Playfair Display', serif;
+				font-size: clamp(1.9rem, 7.5vw, 3rem);
+				font-weight: 900;
+				line-height: 1.1;
+				margin-bottom: 22px;
+			}
+
+			/* Reveal */
+			.reveal {
+				opacity: 0;
+				transform: translateY(34px);
+				transition:
+					opacity 0.75s ease,
+					transform 0.75s ease;
+			}
+			.reveal.vis {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			/* ── MUSIC PLAYER ── */
+			#music-player {
+				position: fixed;
+				bottom: 18px;
+				right: 14px;
+				z-index: 1000;
+				background: rgba(26, 10, 30, 0.93);
+				border: 1px solid rgba(255, 107, 138, 0.28);
+				border-radius: 50px;
+				padding: 9px 15px;
+				display: flex;
+				align-items: center;
+				gap: 9px;
+				backdrop-filter: blur(20px);
+				box-shadow: 0 8px 32px rgba(255, 107, 138, 0.18);
+			}
+			.music-btn {
+				width: 40px;
+				height: 40px;
+				background: linear-gradient(135deg, var(--rose), var(--wine));
+				border: none;
+				border-radius: 50%;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 15px;
+				color: #fff;
+				box-shadow: 0 0 18px rgba(255, 107, 138, 0.45);
+				transition: transform 0.2s;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.music-btn:active {
+				transform: scale(0.9);
+			}
+			.music-label {
+				font-size: 0.65rem;
+				letter-spacing: 0.08em;
+				color: var(--blush);
+				text-transform: uppercase;
+				white-space: nowrap;
+				display: none;
+			}
+			@media (min-width: 400px) {
+				.music-label {
+					display: block;
+				}
+			}
+			.music-bars {
+				display: flex;
+				align-items: flex-end;
+				gap: 3px;
+				height: 20px;
+			}
+			.bar {
+				width: 3px;
+				background: var(--rose);
+				border-radius: 2px;
+				height: 4px;
+			}
+			.bar.active:nth-child(1) {
+				animation: barA 0.7s ease infinite 0s;
+			}
+			.bar.active:nth-child(2) {
+				animation: barA 0.7s ease infinite 0.12s;
+			}
+			.bar.active:nth-child(3) {
+				animation: barA 0.7s ease infinite 0.24s;
+			}
+			.bar.active:nth-child(4) {
+				animation: barA 0.7s ease infinite 0.36s;
+			}
+
+			/* ── NAME FEATURE ── */
+			#name-section {
+				text-align: center;
+				background: radial-gradient(ellipse at center, #2a0a3e 0%, var(--deep) 70%);
+			}
+			.name-glow {
+				font-family: 'Dancing Script', cursive;
+				font-size: clamp(2.4rem, 12.5vw, 6.5rem);
+				font-weight: 700;
+				line-height: 1.1;
+				background: linear-gradient(
+					135deg,
+					var(--gold),
+					var(--rose),
+					var(--lilac),
+					var(--gold)
+				);
+				background-size: 300% 300%;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				animation: gradShift 4s ease infinite;
+				filter: drop-shadow(0 0 28px rgba(255, 107, 138, 0.5));
+			}
+			.years-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				margin-top: 16px;
+				background: rgba(255, 107, 138, 0.1);
+				border: 1px solid rgba(255, 107, 138, 0.22);
+				border-radius: 50px;
+				padding: 8px 20px;
+			}
+			.years-pill span {
+				font-size: 0.72rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: var(--blush);
+			}
+			.nara-quote {
+				margin-top: 18px;
+				font-style: italic;
+				font-size: clamp(0.9rem, 3.4vw, 1.15rem);
+				line-height: 1.75;
+				color: rgba(255, 248, 240, 0.6);
+			}
+
+			/* ── CAROUSEL ── */
+			#memories {
+				background: linear-gradient(
+					180deg,
+					var(--deep) 0%,
+					#2a0a2e 50%,
+					var(--deep) 100%
+				);
+			}
+			.swiper {
+				width: 100%;
+				padding: 18px 34px 56px !important;
+			}
+			.swiper-slide {
+				width: 265px;
+				border-radius: 20px;
+				overflow: hidden;
+				position: relative;
+				box-shadow: 0 18px 55px rgba(0, 0, 0, 0.5);
+				transition: transform 0.3s;
+			}
+			.swiper-slide-active {
+				transform: scale(1.04);
+			}
+			.fake-img {
+				width: 100%;
+				height: 340px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 76px;
+			}
+			.slide-img {
+				width: 100%;
+				height: 340px;
+				object-fit: cover;
+				display: block;
+			}
+			.slide-overlay {
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(to top, rgba(26, 10, 30, 0.9) 0%, transparent 52%);
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				padding: 20px 16px;
+			}
+			.slide-cap {
+				font-family: 'Dancing Script', cursive;
+				font-size: 1.3rem;
+				color: #fff;
+				line-height: 1.3;
+			}
+			.slide-sub {
+				font-size: 0.7rem;
+				letter-spacing: 0.08em;
+				color: var(--blush);
+				text-transform: uppercase;
+				margin-top: 4px;
+			}
+			.swiper-pagination-bullet {
+				background: var(--blush) !important;
+			}
+			.swiper-pagination-bullet-active {
+				background: var(--rose) !important;
+			}
+
+			/* ── LETTER ── */
+			.letter-card {
+				background: linear-gradient(
+					135deg,
+					rgba(139, 26, 74, 0.16),
+					rgba(192, 132, 252, 0.07)
+				);
+				border: 1px solid rgba(255, 107, 138, 0.16);
+				border-radius: 22px;
+				padding: 34px 24px;
+				position: relative;
+				backdrop-filter: blur(10px);
+			}
+			.letter-card::before {
+				content: '"';
+				position: absolute;
+				top: -16px;
+				left: 16px;
+				font-family: 'Playfair Display', serif;
+				font-size: 105px;
+				color: var(--rose);
+				opacity: 0.12;
+				line-height: 1;
+			}
+			.letter-p {
+				font-family: 'Playfair Display', serif;
+				font-style: italic;
+				font-size: clamp(0.95rem, 3.6vw, 1.2rem);
+				line-height: 1.9;
+				color: rgba(255, 248, 240, 0.87);
+				margin-bottom: 14px;
+			}
+			.letter-p:last-of-type {
+				margin-bottom: 0;
+			}
+			.letter-sig {
+				margin-top: 20px;
+				text-align: right;
+				font-family: 'Dancing Script', cursive;
+				font-size: 1.55rem;
+				color: var(--gold);
+			}
+
+			/* ── NARA ── */
+			#nara {
+				background: linear-gradient(180deg, var(--deep), #08180e, var(--deep));
+			}
+			#nara-canvas {
+				width: 100%;
+				height: 260px;
+				display: block;
+				border-radius: 20px;
+				overflow: hidden;
+			}
+			.deer-run {
+				position: relative;
+				height: 50px;
+				overflow: hidden;
+				margin: 10px 0;
+			}
+			.deer-el {
+				position: absolute;
+				bottom: 0;
+				font-size: 28px;
+				animation: deerWalk linear infinite;
+			}
+			.nara-card {
+				background: rgba(10, 50, 20, 0.5);
+				border: 1px solid rgba(100, 200, 100, 0.14);
+				border-radius: 16px;
+				padding: 20px;
+				text-align: center;
+				margin-top: 12px;
+			}
+			.nara-kanji {
+				font-family: 'Noto Serif JP', serif;
+				font-size: clamp(2rem, 9vw, 3.5rem);
+				color: rgba(255, 255, 255, 0.12);
+				line-height: 1;
+			}
+			.nara-title {
+				font-family: 'Playfair Display', serif;
+				font-size: clamp(1.3rem, 5vw, 1.8rem);
+				font-weight: 700;
+				margin-top: 4px;
+				background: linear-gradient(135deg, #a8e6a3, #5cb85c);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				animation: naraGlow 3s ease infinite;
+			}
+			.nara-poem {
+				font-style: italic;
+				font-size: clamp(0.88rem, 3vw, 1.05rem);
+				line-height: 1.85;
+				color: rgba(255, 248, 240, 0.65);
+				margin-top: 12px;
+			}
+			#cherry-wrap {
+				position: relative;
+			}
+			#cherry-container {
+				position: absolute;
+				inset: 0;
+				pointer-events: none;
+				overflow: hidden;
+				border-radius: 20px;
+			}
+
+			/* ── TIMELINE ── */
+			#timeline-section {
+				background: linear-gradient(180deg, var(--deep), #1a0a2e);
+			}
+			.timeline {
+				position: relative;
+				padding-left: 28px;
+				margin-top: 28px;
+			}
+			.timeline::before {
+				content: '';
+				position: absolute;
+				left: 7px;
+				top: 0;
+				bottom: 0;
+				width: 2px;
+				background: linear-gradient(to bottom, var(--rose), var(--lilac), var(--gold));
+			}
+			.tl-item {
+				position: relative;
+				margin-bottom: 26px;
+				opacity: 0;
+				transform: translateX(-18px);
+				transition:
+					opacity 0.6s ease,
+					transform 0.6s ease;
+			}
+			.tl-item.vis {
+				opacity: 1;
+				transform: translateX(0);
+			}
+			.tl-dot {
+				position: absolute;
+				left: -24px;
+				top: 5px;
+				width: 13px;
+				height: 13px;
+				border-radius: 50%;
+				background: var(--rose);
+				border: 2px solid var(--deep);
+				box-shadow: 0 0 10px rgba(255, 107, 138, 0.5);
+			}
+			.tl-year {
+				font-size: 0.65rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: var(--gold);
+				margin-bottom: 3px;
+			}
+			.tl-text {
+				font-family: 'Playfair Display', serif;
+				font-style: italic;
+				font-size: clamp(0.95rem, 3.4vw, 1.1rem);
+				color: rgba(255, 248, 240, 0.84);
+			}
+
+			/* ── CAKE ── */
+			#cake-section {
+				text-align: center;
+			}
+			#cake-canvas {
+				width: 100%;
+				max-width: 320px;
+				height: 320px;
+				margin: 0 auto;
+				display: block;
+				cursor: pointer;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.cake-hint {
+				font-size: 0.72rem;
+				letter-spacing: 0.14em;
+				color: var(--blush);
+				text-transform: uppercase;
+				margin-top: 8px;
+				animation: pulse 2s ease infinite;
+			}
+
+			/* ── COUNTDOWN ── */
+			#countdown-section {
+				text-align: center;
+			}
+			.cd-grid {
+				display: flex;
+				justify-content: center;
+				gap: 12px;
+				margin-top: 26px;
+				flex-wrap: wrap;
+			}
+			.cd-box {
+				background: linear-gradient(
+					135deg,
+					rgba(255, 107, 138, 0.12),
+					rgba(247, 201, 72, 0.07)
+				);
+				border: 1px solid rgba(255, 107, 138, 0.18);
+				border-radius: 14px;
+				padding: 16px 12px;
+				min-width: 65px;
+				text-align: center;
+			}
+			.cd-num {
+				font-family: 'Playfair Display', serif;
+				font-size: 2.3rem;
+				font-weight: 900;
+				color: var(--gold);
+				line-height: 1;
+			}
+			.cd-label {
+				font-size: 0.6rem;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--blush);
+				margin-top: 4px;
+			}
+
+			/* ── WISHES ── */
+			.wishes-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 11px;
+				margin-top: 26px;
+			}
+			.wish-card {
+				background: linear-gradient(
+					135deg,
+					rgba(255, 107, 138, 0.07),
+					rgba(192, 132, 252, 0.04)
+				);
+				border: 1px solid rgba(255, 107, 138, 0.12);
+				border-radius: 14px;
+				padding: 16px 12px;
+				text-align: center;
+				transition:
+					transform 0.3s,
+					box-shadow 0.3s;
+			}
+			.wish-card:first-child {
+				grid-column: span 2;
+			}
+			.wish-card:hover,
+			.wish-card:active {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 32px rgba(255, 107, 138, 0.16);
+			}
+			.wish-emoji {
+				font-size: 1.7rem;
+				margin-bottom: 7px;
+			}
+			.wish-text {
+				font-size: 0.82rem;
+				line-height: 1.6;
+				color: rgba(255, 248, 240, 0.78);
+			}
+
+			/* ── FINAL ── */
+			#final {
+				min-height: 100svh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				background: radial-gradient(ellipse at center, #3a0a2e 0%, var(--deep) 70%);
+			}
+			.final-hb {
+				font-family: 'Dancing Script', cursive;
+				font-size: clamp(3rem, 16vw, 8rem);
+				font-weight: 700;
+				background: linear-gradient(
+					135deg,
+					var(--gold),
+					var(--rose),
+					var(--lilac),
+					var(--gold)
+				);
+				background-size: 300% 300%;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				animation: gradShift 4s ease infinite;
+				filter: drop-shadow(0 0 38px rgba(255, 107, 138, 0.6));
+				line-height: 1.1;
+			}
+			.final-name-big {
+				font-family: 'Dancing Script', cursive;
+				font-size: clamp(1.8rem, 9vw, 4.5rem);
+				color: var(--blush);
+				margin-top: 8px;
+				filter: drop-shadow(0 0 18px rgba(255, 179, 198, 0.5));
+			}
+			.heartbeat {
+				font-size: 3.2rem;
+				animation: heartbeat 1.2s ease infinite;
+				display: inline-block;
+				margin-top: 14px;
+				filter: drop-shadow(0 0 16px rgba(255, 107, 138, 0.8));
+			}
+
+			/* Fireworks */
+			#fw-canvas {
+				position: fixed;
+				inset: 0;
+				pointer-events: none;
+				z-index: 500;
+			}
+
+			/* ── KEYFRAMES ── */
+			@keyframes fadeUp {
+				from {
+					opacity: 0;
+					transform: translateY(26px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+			@keyframes floatHeart {
+				0% {
+					transform: translateY(0) rotate(45deg);
+					opacity: 0;
+				}
+				10% {
+					opacity: 0.65;
+				}
+				90% {
+					opacity: 0.2;
+				}
+				100% {
+					transform: translateY(-105vh) rotate(45deg);
+					opacity: 0;
+				}
+			}
+			@keyframes scrollPulse {
+				0%,
+				100% {
+					opacity: 0.28;
+				}
+				50% {
+					opacity: 1;
+				}
+			}
+			@keyframes barA {
+				0%,
+				100% {
+					height: 4px;
+				}
+				50% {
+					height: 20px;
+				}
+			}
+			@keyframes heartbeat {
+				0%,
+				100% {
+					transform: scale(1);
+				}
+				14% {
+					transform: scale(1.18);
+				}
+				28% {
+					transform: scale(1);
+				}
+				42% {
+					transform: scale(1.1);
+				}
+				70% {
+					transform: scale(1);
+				}
+			}
+			@keyframes gradShift {
+				0%,
+				100% {
+					background-position: 0% 50%;
+				}
+				50% {
+					background-position: 100% 50%;
+				}
+			}
+			@keyframes pulse {
+				0%,
+				100% {
+					opacity: 0.4;
+				}
+				50% {
+					opacity: 1;
+				}
+			}
+			@keyframes confettiFall {
+				0% {
+					transform: translateY(-20px) rotate(0deg);
+					opacity: 1;
+				}
+				100% {
+					transform: translateY(110vh) rotate(720deg);
+					opacity: 0;
+				}
+			}
+			@keyframes deerWalk {
+				0% {
+					left: -60px;
+					transform: scaleX(1);
+				}
+				49% {
+					left: 105%;
+					transform: scaleX(1);
+				}
+				50% {
+					left: 105%;
+					transform: scaleX(-1);
+				}
+				99% {
+					left: -60px;
+					transform: scaleX(-1);
+				}
+				100% {
+					left: -60px;
+					transform: scaleX(1);
+				}
+			}
+			@keyframes rippleOut {
+				to {
+					transform: translate(-50%, -50%) scale(30);
+					opacity: 0;
+				}
+			}
+			@keyframes cherryFall {
+				0% {
+					transform: translateY(-10px) rotate(0deg);
+					opacity: 0.9;
+				}
+				100% {
+					transform: translateY(300px) rotate(360deg);
+					opacity: 0;
+				}
+			}
+			@keyframes naraGlow {
+				0%,
+				100% {
+					filter: drop-shadow(0 0 6px rgba(100, 200, 100, 0.3));
+				}
+				50% {
+					filter: drop-shadow(0 0 20px rgba(100, 200, 100, 0.8));
+				}
+			}
+			@keyframes lyricFadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(22px) scale(0.96);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0) scale(1);
+				}
+			}
+			@keyframes lyricGlow {
+				0%,
+				100% {
+					text-shadow: 0 0 20px rgba(255, 107, 138, 0.4);
+				}
+				50% {
+					text-shadow:
+						0 0 50px rgba(255, 107, 138, 0.9),
+						0 0 80px rgba(247, 201, 72, 0.4);
+				}
+			}
+			@keyframes activeLine {
+				0% {
+					background-position: 0% 50%;
+				}
+				100% {
+					background-position: 100% 50%;
+				}
+			}
+			@keyframes noteFloat {
+				0% {
+					transform: translateY(0) rotate(0deg);
+					opacity: 0.8;
+				}
+				100% {
+					transform: translateY(-80px) rotate(180deg);
+					opacity: 0;
+				}
+			}
+			@keyframes lpPulse {
+				0%,
+				100% {
+					transform: scale(1);
+					box-shadow: 0 0 30px rgba(255, 107, 138, 0.3);
+				}
+				50% {
+					transform: scale(1.04);
+					box-shadow: 0 0 60px rgba(255, 107, 138, 0.7);
+				}
+			}
+			@keyframes vinylSpin {
+				from {
+					transform: rotate(0deg);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+			@keyframes waveform {
+				0%,
+				100% {
+					height: 4px;
+				}
+				50% {
+					height: 28px;
+				}
+			}
+
+			/* ── LYRICS SECTION ── */
+			#lyrics-section {
+				position: relative;
+				min-height: 100svh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+				background: linear-gradient(
+					180deg,
+					var(--deep) 0%,
+					#0d0020 50%,
+					var(--deep) 100%
+				);
+				padding: 60px 0 100px;
+			}
+
+			#lyrics-bg-canvas-wrap {
+				position: absolute;
+				inset: 0;
+				pointer-events: none;
+			}
+			#lyrics-bg-canvas {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			/* Paused state */
+			#lyrics-paused {
+				position: relative;
+				z-index: 10;
+				text-align: center;
+				padding: 0 28px;
+				transition:
+					opacity 0.6s ease,
+					transform 0.6s ease;
+			}
+			#lyrics-paused.hidden {
+				opacity: 0;
+				transform: scale(0.9);
+				pointer-events: none;
+				position: absolute;
+			}
+
+			.lp-icon {
+				font-size: 5rem;
+				margin-bottom: 16px;
+				animation: heartbeat 2s ease infinite;
+				display: inline-block;
+				filter: drop-shadow(0 0 30px rgba(255, 107, 138, 0.6));
+			}
+			.lp-title {
+				font-family: 'Dancing Script', cursive;
+				font-size: clamp(2.4rem, 12vw, 5rem);
+				font-weight: 700;
+				background: linear-gradient(135deg, var(--gold), var(--rose), var(--lilac));
+				background-size: 200% 200%;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				animation: gradShift 4s ease infinite;
+				margin-bottom: 8px;
+			}
+			.lp-sub {
+				font-family: 'Playfair Display', serif;
+				font-style: italic;
+				font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+				color: var(--blush);
+				margin-bottom: 32px;
+				letter-spacing: 0.05em;
+			}
+			.lp-play-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 12px;
+				background: linear-gradient(135deg, var(--rose), var(--wine));
+				border: none;
+				border-radius: 50px;
+				padding: 16px 32px;
+				font-family: 'Playfair Display', serif;
+				font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+				color: #fff;
+				cursor: pointer;
+				letter-spacing: 0.05em;
+				animation: lpPulse 2.5s ease infinite;
+				-webkit-tap-highlight-color: transparent;
+			}
+			.lp-play-btn span {
+				font-size: 1.2rem;
+			}
+			.lp-hint {
+				margin-top: 20px;
+				font-size: 0.7rem;
+				letter-spacing: 0.2em;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.3);
+			}
+
+			/* Vinyl record decoration */
+			.vinyl {
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				background: conic-gradient(
+					#1a0a1e 0deg,
+					#2a1020 30deg,
+					#1a0a1e 60deg,
+					#2a1020 90deg,
+					#1a0a1e 120deg,
+					#2a1020 150deg,
+					#1a0a1e 180deg,
+					#2a1020 210deg,
+					#1a0a1e 240deg,
+					#2a1020 270deg,
+					#1a0a1e 300deg,
+					#2a1020 330deg,
+					#1a0a1e 360deg
+				);
+				border: 3px solid rgba(255, 107, 138, 0.2);
+				margin: 24px auto 0;
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.vinyl.spinning {
+				animation: vinylSpin 3s linear infinite;
+			}
+			.vinyl::after {
+				content: '';
+				position: absolute;
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				background: radial-gradient(circle, var(--rose), var(--wine));
+				box-shadow: 0 0 15px rgba(255, 107, 138, 0.6);
+			}
+			.vinyl-label {
+				position: absolute;
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				z-index: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 10px;
+			}
+
+			/* Playing state */
+			#lyrics-playing {
+				position: relative;
+				z-index: 10;
+				width: 100%;
+				max-width: 480px;
+				padding: 0 24px;
+				opacity: 0;
+				transform: translateY(20px);
+				transition:
+					opacity 0.8s ease,
+					transform 0.8s ease;
+				pointer-events: none;
+				position: absolute;
+			}
+			#lyrics-playing.visible {
+				opacity: 1;
+				transform: translateY(0);
+				pointer-events: auto;
+				position: relative !important;
+			}
+
+			.ly-song-title {
+				font-family: 'Dancing Script', cursive;
+				font-size: clamp(1.4rem, 6vw, 2rem);
+				color: var(--gold);
+				text-align: center;
+				margin-bottom: 28px;
+				letter-spacing: 0.05em;
+				filter: drop-shadow(0 0 12px rgba(247, 201, 72, 0.4));
+			}
+
+			.ly-block {
+				margin-bottom: 28px;
+			}
+			.ly-label {
+				font-size: 0.62rem;
+				letter-spacing: 0.28em;
+				text-transform: uppercase;
+				color: rgba(255, 107, 138, 0.5);
+				margin-bottom: 10px;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			.ly-label::before,
+			.ly-label::after {
+				content: '';
+				flex: 1;
+				height: 1px;
+				background: rgba(255, 107, 138, 0.15);
+			}
+
+			.ly-line {
+				font-family: 'Playfair Display', serif;
+				font-style: italic;
+				font-size: clamp(1rem, 4vw, 1.25rem);
+				line-height: 1.85;
+				color: rgba(255, 248, 240, 0.35);
+				padding: 3px 0;
+				transition:
+					color 0.5s ease,
+					transform 0.4s ease;
+				cursor: default;
+				transform-origin: left center;
+			}
+			.ly-line.active {
+				color: #fff;
+				transform: scale(1.03);
+				background: linear-gradient(
+					90deg,
+					var(--gold),
+					var(--rose),
+					var(--lilac),
+					var(--gold)
+				);
+				background-size: 300% 100%;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				animation:
+					activeLine 3s linear infinite,
+					lyricGlow 2s ease infinite;
+				filter: drop-shadow(0 2px 12px rgba(255, 107, 138, 0.5));
+			}
+			.ly-line.past {
+				color: rgba(255, 248, 240, 0.5);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="cursor" id="cursor"></div>
+		<div class="cursor-dot" id="cursorDot"></div>
+		<div class="hearts-wrap" id="heartsWrap"></div>
+		<canvas id="fw-canvas"></canvas>
+
+		<!-- ══ HERO ══ -->
+		<section id="hero">
+			<canvas id="three-canvas"></canvas>
+			<div id="particles-js"></div>
+			<div class="hero-content">
+				<div class="hero-name" id="hero-name"></div>
+				<div class="hero-hb">✦ Happy 23rd Birthday ✦</div>
+				<div class="hero-badge" id="hero-badge"></div>
+				<div class="hero-loc" id="hero-loc"></div>
+			</div>
+			<div class="scroll-hint">
+				<span>Scroll</span>
+				<div class="scroll-line"></div>
+			</div>
+		</section>
+
+		<!-- ══ NAME FEATURE ══ -->
+		<section id="name-section">
+			<div class="sec-inner" style="text-align: center">
+				<div class="sec-tag reveal">With all my love</div>
+				<div class="name-glow reveal" id="name-display"></div>
+				<div class="years-pill reveal"><span id="years-label"></span></div>
+				<p class="nara-quote reveal" id="nara-msg"></p>
+			</div>
+		</section>
+
+		
+
+		<!-- ══ NARA JAPAN ══ -->
+		<section id="nara">
+			<div class="sec-inner">
+				<div class="sec-tag reveal">Where you are</div>
+				<h2 class="sec-title reveal">
+					奈良&thinsp;<em style="color: #a8e6a3">Japan</em>
+				</h2>
+				<div id="cherry-wrap" class="reveal">
+					<canvas id="nara-canvas"></canvas>
+					<div id="cherry-container"></div>
+				</div>
+				<div class="deer-run reveal">
+					<div class="deer-el" style="animation-duration: 9s; animation-delay: 0s">
+						🦌
+					</div>
+					<div
+						class="deer-el"
+						style="
+							animation-duration: 13s;
+							animation-delay: 3.5s;
+							font-size: 22px;
+						"
+					>
+						🦌
+					</div>
+					<div
+						class="deer-el"
+						style="animation-duration: 17s; animation-delay: 7s; font-size: 18px"
+					>
+						🦌
+					</div>
+				</div>
+				<div class="nara-card reveal">
+					<div class="nara-kanji">奈良</div>
+					<div class="nara-title">Nara, Japan</div>
+					<p class="nara-poem" id="nara-poem"></p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ══ LETTER ══ -->
+		<section id="message">
+			<div class="sec-inner">
+				<div class="sec-tag reveal">From my heart</div>
+				<h2 class="sec-title reveal">
+					A love<br /><em style="color: var(--lilac)">letter</em><br />for you
+				</h2>
+				<div class="letter-card reveal">
+					<div id="letter-body"></div>
+					<div class="letter-sig">— Forever yours 💕</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ══ TIMELINE ══ -->
+		<section id="timeline-section">
+			<div class="sec-inner">
+				<div class="sec-tag reveal">Our Story</div>
+				<h2 class="sec-title reveal">
+					<span id="tl-years"></span> years of<br /><em style="color: var(--gold)"
+						>us</em
+					>
+				</h2>
+				<div class="timeline" id="timeline"></div>
+			</div>
+		</section>
+
+		<!-- ══ CAKE ══ -->
+		<section id="cake-section">
+			<div class="sec-inner">
+				<div class="sec-tag reveal">Make a wish</div>
+				<h2 class="sec-title reveal">
+					Blow out<br /><em style="color: var(--gold)">the candles</em>
+				</h2>
+			</div>
+			<canvas id="cake-canvas"></canvas>
+			<p class="cake-hint reveal">✨ Tap the cake to make a wish ✨</p>
+		</section>
+
+		<!-- ══ COUNTDOWN ══ -->
+		<section id="countdown-section">
+			<div class="sec-inner">
+				<div class="sec-tag reveal">Until your day</div>
+				<h2 class="sec-title reveal">
+					Counting down<br /><em style="color: var(--rose)">to you</em>
+				</h2>
+				<div class="cd-grid" id="countdown"></div>
+			</div>
+		</section>
+
+		<!-- ══ WISHES ══ -->
+		<section id="wishes">
+			<div class="sec-inner">
+				<div class="sec-tag reveal">Birthday wishes</div>
+				<h2 class="sec-title reveal">
+					Wishes for<br /><em style="color: var(--lilac)">you</em>
+				</h2>
+				<div class="wishes-grid reveal" id="wishes-grid"></div>
+			</div>
+		</section>
+
+		<!-- ══ FINAL ══ -->
+		<section id="final">
+			<div class="sec-inner">
+				<p
+					style="
+						font-family: 'Playfair Display', serif;
+						font-style: italic;
+						font-size: clamp(0.88rem, 3.2vw, 1.15rem);
+						color: var(--blush);
+						margin-bottom: 6px;
+					"
+					class="reveal"
+				>
+					With every beat of my heart,
+				</p>
+				<div class="final-hb reveal">Happy<br />Birthday</div>
+				<div class="final-name-big reveal" id="final-name"></div>
+				<div class="heartbeat">❤️</div>
+				<p
+					style="
+						margin-top: 14px;
+						font-family: 'Dancing Script', cursive;
+						font-size: 1.4rem;
+						color: rgba(255, 248, 240, 0.4);
+					"
+					class="reveal"
+				>
+					March 22, 2026 &middot; 23 Years of Magic
+				</p>
+			</div>
+		</section>
+
+		<!-- ══ LYRICS SECTION ══ -->
+		<section id="lyrics-section">
+			<div id="lyrics-bg-canvas-wrap">
+				<canvas id="lyrics-bg-canvas"></canvas>
+			</div>
+
+			<div
+				class="sec-inner"
+				style="position: relative; z-index: 10; width: 100%; text-align: center"
+			>
+				<div class="sec-tag" style="opacity: 0.7">Our Song</div>
+			</div>
+
+			<!-- PAUSED STATE -->
+			<div id="lyrics-paused">
+				<div class="lp-icon">🎵</div>
+				<div class="lp-title">Nara Nights</div>
+				<div class="lp-sub">A song written just for you</div>
+				<button class="lp-play-btn" onclick="toggleMusic()">
+					<span>▶</span> Play to reveal the song
+				</button>
+				<div class="lp-hint">Music brings the lyrics to life ✨</div>
+			</div>
+
+			<!-- PLAYING STATE -->
+			<div id="lyrics-playing">
+				<div class="ly-song-title">🎵 Nara Nights</div>
+				<div id="lyrics-lines"></div>
+			</div>
+		</section>
+
+		<!-- ══ MUSIC PLAYER ══ -->
+		<div id="music-player">
+			<button class="music-btn" id="playBtn" onclick="toggleMusic()">▶</button>
+			<span class="music-label" id="song-label-el"></span>
+			<div class="music-bars">
+				<div class="bar" id="b1"></div>
+				<div class="bar" id="b2"></div>
+				<div class="bar" id="b3"></div>
+				<div class="bar" id="b4"></div>
+			</div>
+		</div>
+
+		<!-- ══ MEMORIES ══ -->
+		<section id="memories">
+			<div class="sec-inner">
+				<div class="sec-tag reveal">Our Moments</div>
+				<h2 class="sec-title reveal">
+					Every memory<br /><em style="color: var(--rose)">with you</em><br />is
+					precious
+				</h2>
+			</div>
+			<div class="reveal" style="padding: 8px 0">
+				<div class="swiper mySwiper">
+					<div class="swiper-wrapper" id="slides-wrapper"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</section>
+
+		<script>
+			// ═══════════════════════════════════════
+			// APPLY CONFIG → DOM
+			// ═══════════════════════════════════════
+			document.title = `Happy Birthday ${CONFIG.name} 🎂`;
+			document.getElementById('hero-name').textContent = CONFIG.name;
+			document.getElementById('hero-badge').textContent =
+				`March 22, 2026 · Turning ${CONFIG.age}`;
+			document.getElementById('hero-loc').textContent =
+				`${CONFIG.locationEmoji} ${CONFIG.location}`;
+			document.getElementById('name-display').textContent = CONFIG.name;
+			document.getElementById('years-label').textContent =
+				`❤️ ${CONFIG.yearsTogether} Beautiful Years Together ❤️`;
+			document.getElementById('nara-msg').textContent = CONFIG.naraMessage;
+			document.getElementById('tl-years').textContent = CONFIG.yearsTogether;
+			document.getElementById('final-name').textContent = CONFIG.name;
+			document.getElementById('song-label-el').textContent = CONFIG.songLabel;
+			document.getElementById('nara-poem').innerHTML = CONFIG.naraPoem.join('<br>');
+
+			// Letter
+			const lb = document.getElementById('letter-body');
+			CONFIG.letter.forEach((p) => {
+				const el = document.createElement('p');
+				el.className = 'letter-p';
+				el.textContent = p;
+				lb.appendChild(el);
+			});
+
+			// Slides
+			const sw = document.getElementById('slides-wrapper');
+			CONFIG.slides.forEach((s) => {
+				const slide = document.createElement('div');
+				slide.className = 'swiper-slide';
+				slide.innerHTML = s.photo
+					? `<img class="slide-img" src="${s.photo}" alt="${s.caption}">`
+					: `<div class="fake-img" style="background:linear-gradient(${s.gradient})"><span style="position:relative;z-index:1">${s.emoji}</span></div>`;
+				slide.innerHTML += `<div class="slide-overlay"><div class="slide-cap">"${s.caption}"</div><div class="slide-sub">${s.sub}</div></div>`;
+				sw.appendChild(slide);
+			});
+
+			// Timeline
+			const tlEl = document.getElementById('timeline');
+			CONFIG.milestones.forEach((m, i) => {
+				const item = document.createElement('div');
+				item.className = 'tl-item';
+				item.style.transitionDelay = `${i * 0.11}s`;
+				item.innerHTML = `<div class="tl-dot"></div><div class="tl-year">${m.year}</div><div><span style="font-size:1.1rem;margin-right:5px;">${m.icon}</span><span class="tl-text">${m.text}</span></div>`;
+				tlEl.appendChild(item);
+			});
+
+			// Wishes
+			const wg = document.getElementById('wishes-grid');
+			CONFIG.wishes.forEach((w) => {
+				const c = document.createElement('div');
+				c.className = 'wish-card';
+				c.innerHTML = `<div class="wish-emoji">${w.emoji}</div><div class="wish-text">${w.text}</div>`;
+				wg.appendChild(c);
+			});
+
+			// ═══════════════════════════════════════
+			// CURSOR
+			// ═══════════════════════════════════════
+			const cursor = document.getElementById('cursor'),
+				cursorDot = document.getElementById('cursorDot');
+			let mx = 0,
+				my = 0,
+				cx = 0,
+				cy = 0;
+			document.addEventListener('mousemove', (e) => {
+				mx = e.clientX;
+				my = e.clientY;
+				cursorDot.style.left = mx + 'px';
+				cursorDot.style.top = my + 'px';
+			});
+			(function aC() {
+				cx += (mx - cx) * 0.15;
+				cy += (my - cy) * 0.15;
+				cursor.style.left = cx + 'px';
+				cursor.style.top = cy + 'px';
+				requestAnimationFrame(aC);
+			})();
+
+			// ═══════════════════════════════════════
+			// THREE.JS HERO BG
+			// ═══════════════════════════════════════
+			(function () {
+				const canvas = document.getElementById('three-canvas');
+				const renderer = new THREE.WebGLRenderer({
+					canvas,
+					alpha: true,
+					antialias: true,
+				});
+				renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+				renderer.setSize(innerWidth, innerHeight);
+				const scene = new THREE.Scene();
+				const cam = new THREE.PerspectiveCamera(
+					60,
+					innerWidth / innerHeight,
+					0.1,
+					1000,
+				);
+				cam.position.z = 30;
+
+				const n = 2000,
+					sp = new Float32Array(n * 3),
+					sc = new Float32Array(n * 3);
+				for (let i = 0; i < n; i++) {
+					sp[i * 3] = (Math.random() - 0.5) * 200;
+					sp[i * 3 + 1] = (Math.random() - 0.5) * 200;
+					sp[i * 3 + 2] = (Math.random() - 0.5) * 200;
+					const r = Math.random();
+					if (r < 0.33) {
+						sc[i * 3] = 1;
+						sc[i * 3 + 1] = 0.42;
+						sc[i * 3 + 2] = 0.54;
+					} else if (r < 0.66) {
+						sc[i * 3] = 0.97;
+						sc[i * 3 + 1] = 0.79;
+						sc[i * 3 + 2] = 0.28;
+					} else {
+						sc[i * 3] = 0.75;
+						sc[i * 3 + 1] = 0.52;
+						sc[i * 3 + 2] = 0.99;
+					}
+				}
+				const sg = new THREE.BufferGeometry();
+				sg.setAttribute('position', new THREE.BufferAttribute(sp, 3));
+				sg.setAttribute('color', new THREE.BufferAttribute(sc, 3));
+				scene.add(
+					new THREE.Points(
+						sg,
+						new THREE.PointsMaterial({
+							size: 0.27,
+							vertexColors: true,
+							transparent: true,
+							opacity: 0.72,
+						}),
+					),
+				);
+
+				const og = new THREE.BufferGeometry(),
+					op = new Float32Array(90 * 3);
+				for (let i = 0; i < 90; i++) {
+					op[i * 3] = (Math.random() - 0.5) * 65;
+					op[i * 3 + 1] = (Math.random() - 0.5) * 65;
+					op[i * 3 + 2] = (Math.random() - 0.5) * 55 - 10;
+				}
+				og.setAttribute('position', new THREE.BufferAttribute(op, 3));
+				const orbMesh = new THREE.Points(
+					og,
+					new THREE.PointsMaterial({
+						size: 1.5,
+						color: 0xff6b8a,
+						transparent: true,
+						opacity: 0.32,
+						blending: THREE.AdditiveBlending,
+					}),
+				);
+				scene.add(orbMesh);
+
+				const rings = [];
+				[0xff6b8a, 0xf7c948, 0xc084fc].forEach((c, i) => {
+					const m = new THREE.Mesh(
+						new THREE.TorusGeometry(9 + i * 5, 0.05, 8, 80),
+						new THREE.MeshBasicMaterial({
+							color: c,
+							transparent: true,
+							opacity: 0.11,
+						}),
+					);
+					m.rotation.x = (Math.PI / 3) * i;
+					m.rotation.y = (Math.PI / 4) * i;
+					scene.add(m);
+					rings.push(m);
+				});
+
+				let t = 0;
+				(function a() {
+					requestAnimationFrame(a);
+					t += 0.003;
+					rings.forEach((r, i) => {
+						r.rotation.x += 0.0017 * (i + 1) * 0.5;
+						r.rotation.y += 0.001 * (i + 1);
+						r.rotation.z += 0.0012 * (i + 1) * 0.7;
+					});
+					const pa = og.attributes.position.array;
+					for (let i = 0; i < 90; i++) pa[i * 3 + 1] += Math.sin(t + i) * 0.009;
+					og.attributes.position.needsUpdate = true;
+					renderer.render(scene, cam);
+				})();
+				window.addEventListener('resize', () => {
+					cam.aspect = innerWidth / innerHeight;
+					cam.updateProjectionMatrix();
+					renderer.setSize(innerWidth, innerHeight);
+				});
+			})();
+
+			// ═══════════════════════════════════════
+			// PARTICLES
+			// ═══════════════════════════════════════
+			particlesJS('particles-js', {
+				particles: {
+					number: { value: 30 },
+					color: { value: ['#ff6b8a', '#f7c948', '#c084fc'] },
+					shape: { type: 'circle' },
+					opacity: {
+						value: 0.3,
+						random: true,
+						anim: { enable: true, speed: 0.4, opacity_min: 0, sync: false },
+					},
+					size: { value: 3, random: true },
+					line_linked: { enable: false },
+					move: {
+						enable: true,
+						speed: 0.8,
+						direction: 'top',
+						random: true,
+						straight: false,
+						out_mode: 'out',
+					},
+				},
+				interactivity: {
+					detect_on: 'canvas',
+					events: { onhover: { enable: false }, onclick: { enable: false } },
+				},
+				retina_detect: true,
+			});
+
+			// ═══════════════════════════════════════
+			// HEARTS
+			// ═══════════════════════════════════════
+			function spawnHeart() {
+				const w = document.getElementById('heartsWrap');
+				const h = document.createElement('div');
+				const sz = 7 + Math.random() * 15;
+				h.className = 'heart';
+				h.style.cssText = `left:${Math.random() * 100}%;width:${sz}px;height:${sz}px;animation-duration:${6 + Math.random() * 8}s;animation-delay:${Math.random() * 3}s;`;
+				w.appendChild(h);
+				setTimeout(() => h.remove(), 14000);
+			}
+			setInterval(spawnHeart, 700);
+
+			// ═══════════════════════════════════════
+			// SWIPER
+			// ═══════════════════════════════════════
+			// new Swiper('.mySwiper', {
+			// 	slidesPerView: 'auto',
+			// 	centeredSlides: true,
+			// 	spaceBetween: 16,
+			// 	loop: true,
+			// 	autoplay: { delay: 3200, disableOnInteraction: false },
+			// 	pagination: { el: '.swiper-pagination', clickable: true },
+			// 	effect: 'coverflow',
+			// 	coverflowEffect: {
+			// 		rotate: 28,
+			// 		stretch: 0,
+			// 		depth: 90,
+			// 		modifier: 1,
+			// 		slideShadows: true,
+			// 	},
+			// });
+			new Swiper('.mySwiper', {
+				slidesPerView: 'auto',
+				centeredSlides: true,
+				spaceBetween: 16,
+				loop: true,
+				speed: 1200,
+				autoplay: { delay: 4800, disableOnInteraction: false, pauseOnMouseEnter: true },
+				pagination: { el: '.swiper-pagination', clickable: true },
+				effect: 'coverflow',
+				coverflowEffect: {
+					rotate: 28,
+					stretch: 0,
+					depth: 90,
+					modifier: 1,
+					slideShadows: true,
+				},
+				on: {
+					afterInit(swiper) {
+						const section = document.getElementById('memories');
+						let scrolled = false;
+						const io = new IntersectionObserver(
+							(entries) => {
+								entries.forEach((e) => {
+									if (e.isIntersecting && !scrolled) {
+										scrolled = true;
+										setTimeout(() => {
+											section.scrollIntoView({
+												behavior: 'smooth',
+												block: 'start',
+											});
+										}, 300);
+									}
+								});
+							},
+							{ threshold: 0.3 },
+						);
+						io.observe(section);
+					},
+					slideChange(swiper) {
+						const section = document.getElementById('memories');
+						const rect = section.getBoundingClientRect();
+						const inView =
+							rect.top < window.innerHeight * 0.5 &&
+							rect.bottom > window.innerHeight * 0.5;
+						if (!inView) return;
+						section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+						clearTimeout(window._swiperScrollTimer);
+						window._swiperScrollTimer = setTimeout(() => {
+							section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						}, 900);
+					},
+				},
+			});
+
+			// ═══════════════════════════════════════
+			// NARA CANVAS — animated scene
+			// ═══════════════════════════════════════
+			(function () {
+				const canvas = document.getElementById('nara-canvas');
+				const ctx = canvas.getContext('2d');
+				const DPR = devicePixelRatio || 1;
+				function resize() {
+					const W = canvas.offsetWidth || 460;
+					canvas.width = W * DPR;
+					canvas.height = 260 * DPR;
+					canvas.style.height = '260px';
+					ctx.scale(DPR, DPR);
+					return W;
+				}
+				let W = resize();
+				const H = 260;
+
+				const petals = Array.from({ length: 55 }, () => ({
+					x: Math.random() * W,
+					y: Math.random() * H,
+					vy: 0.35 + Math.random() * 0.7,
+					vx: (Math.random() - 0.5) * 0.4,
+					r: 2.5 + Math.random() * 3.5,
+					rot: Math.random() * Math.PI * 2,
+					rspd: (Math.random() - 0.5) * 0.035,
+					a: 0.5 + Math.random() * 0.4,
+				}));
+
+				let t = 0;
+				function draw() {
+					ctx.clearRect(0, 0, W, H);
+
+					// Sky
+					const sky = ctx.createLinearGradient(0, 0, 0, H);
+					sky.addColorStop(0, '#07101e');
+					sky.addColorStop(0.55, '#160828');
+					sky.addColorStop(1, '#091509');
+					ctx.fillStyle = sky;
+					ctx.fillRect(0, 0, W, H);
+
+					// Moon glow
+					const mg = ctx.createRadialGradient(
+						W * 0.72,
+						H * 0.22,
+						0,
+						W * 0.72,
+						H * 0.22,
+						55,
+					);
+					mg.addColorStop(0, 'rgba(247,210,120,.18)');
+					mg.addColorStop(1, 'transparent');
+					ctx.fillStyle = mg;
+					ctx.fillRect(0, 0, W, H);
+					ctx.beginPath();
+					ctx.arc(W * 0.72, H * 0.22, 20, 0, Math.PI * 2);
+					ctx.fillStyle = 'rgba(247,220,140,.92)';
+					ctx.fill();
+					ctx.beginPath();
+					ctx.arc(W * 0.72 + 5, H * 0.22 - 3, 16, 0, Math.PI * 2);
+					ctx.fillStyle = '#160828';
+					ctx.fill();
+
+					// Stars
+					[
+						[0.08, 0.1],
+						[0.22, 0.07],
+						[0.38, 0.04],
+						[0.52, 0.11],
+						[0.88, 0.09],
+						[0.94, 0.16],
+						[0.06, 0.2],
+						[0.62, 0.06],
+						[0.45, 0.17],
+					].forEach(([sx, sy], i) => {
+						ctx.beginPath();
+						ctx.arc(sx * W, sy * H, 1.1, 0, Math.PI * 2);
+						ctx.fillStyle = `rgba(255,255,255,${0.3 + Math.sin(t * 0.04 + i) * 0.28})`;
+						ctx.fill();
+					});
+
+					// Ground
+					ctx.fillStyle = '#0c1e0a';
+					ctx.fillRect(0, H * 0.68, W, H * 0.32);
+
+					// Cherry trees
+					function tree(x, y, h, tf) {
+						ctx.fillStyle = '#2e1a0a';
+						ctx.beginPath();
+						ctx.moveTo(x - 4, y);
+						ctx.lineTo(x + 4, y);
+						ctx.lineTo(x + 2, y - h * 0.38);
+						ctx.lineTo(x - 2, y - h * 0.38);
+						ctx.fill();
+						[
+							[-16, -h * 0.58],
+							[16, -h * 0.58],
+							[-9, -h * 0.78],
+							[9, -h * 0.78],
+						].forEach(([bx, by]) => {
+							ctx.beginPath();
+							ctx.moveTo(x, y - h * 0.38);
+							ctx.lineTo(x + bx, y + by);
+							ctx.strokeStyle = '#2e1a0a';
+							ctx.lineWidth = 1.5;
+							ctx.stroke();
+						});
+						const by2 = y - h * 0.63,
+							g = ctx.createRadialGradient(x, by2, 0, x, by2, h * 0.44);
+						g.addColorStop(0, 'rgba(255,182,193,.88)');
+						g.addColorStop(0.6, 'rgba(255,150,170,.65)');
+						g.addColorStop(1, 'rgba(255,150,170,0)');
+						ctx.fillStyle = g;
+						ctx.beginPath();
+						ctx.ellipse(x, by2, h * 0.42, h * 0.37, 0, 0, Math.PI * 2);
+						ctx.fill();
+						ctx.fillStyle = `rgba(255,255,255,${0.4 + Math.sin(tf * 0.06) * 0.3})`;
+						ctx.beginPath();
+						ctx.arc(x + 7, by2 - 9, 1.8, 0, Math.PI * 2);
+						ctx.fill();
+					}
+					tree(W * 0.1, H * 0.69, 58, t);
+					tree(W * 0.19, H * 0.72, 44, t + 1);
+					tree(W * 0.8, H * 0.7, 52, t + 1.5);
+					tree(W * 0.92, H * 0.73, 38, t + 0.5);
+
+					// Torii gate
+					function torii(x, y) {
+						const gl = 0.4 + Math.sin(t * 0.04) * 0.22;
+						const tg = ctx.createRadialGradient(x, y - 28, 0, x, y - 28, 32);
+						tg.addColorStop(0, `rgba(255,80,80,${gl * 0.38})`);
+						tg.addColorStop(1, 'transparent');
+						ctx.fillStyle = tg;
+						ctx.fillRect(x - 32, y - 60, 64, 64);
+						ctx.fillStyle = `rgba(200,35,35,${0.82 + gl * 0.1})`;
+						ctx.fillRect(x - 14, y - 42, 4, 42);
+						ctx.fillRect(x + 10, y - 42, 4, 42);
+						ctx.fillRect(x - 20, y - 44, 44, 5);
+						ctx.fillRect(x - 14, y - 34, 32, 4);
+					}
+					torii(W * 0.34, H * 0.68);
+
+					// Pagoda
+					function pagoda(x, y) {
+						[
+							[0, 0, 40, 15],
+							[4, 15, 32, 13],
+							[8, 28, 24, 11],
+						].forEach(([ox, oy, w, fh], i) => {
+							ctx.fillStyle = i % 2 ? '#7a1515' : '#5a0e0e';
+							ctx.beginPath();
+							ctx.moveTo(x, y - oy - 18 - i * 2);
+							ctx.lineTo(x - w / 2 - 7, y - oy);
+							ctx.lineTo(x + w / 2 + 7, y - oy);
+							ctx.closePath();
+							ctx.fill();
+							ctx.fillStyle = '#4a280a';
+							ctx.fillRect(x - w / 2, y - oy - fh, w, fh);
+							const wg = 0.5 + Math.sin(t * 0.05 + i) * 0.3;
+							ctx.fillStyle = `rgba(255,200,50,${wg})`;
+							ctx.fillRect(x - 2, y - oy - fh + 3, 4, 5);
+						});
+						ctx.strokeStyle = '#7a1515';
+						ctx.lineWidth = 2;
+						ctx.beginPath();
+						ctx.moveTo(x, y - 52);
+						ctx.lineTo(x, y - 64);
+						ctx.stroke();
+						const pg = ctx.createRadialGradient(x, y - 38, 0, x, y - 38, 38);
+						pg.addColorStop(
+							0,
+							`rgba(255,90,90,${0.25 + Math.sin(t * 0.05) * 0.15})`,
+						);
+						pg.addColorStop(1, 'transparent');
+						ctx.fillStyle = pg;
+						ctx.fillRect(x - 38, y - 76, 76, 76);
+					}
+					pagoda(W * 0.58, H * 0.67);
+
+					// Lanterns
+					[0.22, 0.42, 0.56, 0.72, 0.87].forEach((px, i) => {
+						const lx = px * W,
+							ly = H * 0.69,
+							la = 0.45 + Math.sin(t * 0.07 + i) * 0.28;
+						ctx.fillStyle = `rgba(255,200,60,${la})`;
+						ctx.beginPath();
+						ctx.ellipse(lx, ly - 9, 4.5, 7, 0, 0, Math.PI * 2);
+						ctx.fill();
+						ctx.fillStyle = 'rgba(180,110,0,.75)';
+						ctx.fillRect(lx - 3.5, ly - 2, 7, 3.5);
+					});
+
+					// Petals
+					petals.forEach((p) => {
+						p.y += p.vy;
+						p.x += p.vx + Math.sin(t * 0.025 + p.rot) * 0.28;
+						p.rot += p.rspd;
+						if (p.y > H + 10) {
+							p.y = -10;
+							p.x = Math.random() * W;
+						}
+						ctx.save();
+						ctx.translate(p.x, p.y);
+						ctx.rotate(p.rot);
+						ctx.globalAlpha = p.a;
+						ctx.fillStyle = '#ffb3c6';
+						ctx.beginPath();
+						ctx.ellipse(0, 0, p.r, p.r * 0.58, 0, 0, Math.PI * 2);
+						ctx.fill();
+						ctx.restore();
+					});
+
+					t += 0.35;
+					requestAnimationFrame(draw);
+				}
+				draw();
+
+				window.addEventListener('resize', () => {
+					W = resize();
+					petals.forEach((p) => {
+						if (p.x > W) p.x = Math.random() * W;
+					});
+				});
+			})();
+
+			// ═══════════════════════════════════════
+			// CAKE CANVAS
+			// ═══════════════════════════════════════
+			(function () {
+				const canvas = document.getElementById('cake-canvas');
+				const ctx = canvas.getContext('2d');
+				const DPR = devicePixelRatio || 1,
+					W = 320,
+					H = 320;
+				canvas.width = W * DPR;
+				canvas.height = H * DPR;
+				canvas.style.width = W + 'px';
+				canvas.style.height = H + 'px';
+				ctx.scale(DPR, DPR);
+
+				let blown = false,
+					bp = 0,
+					flames = [],
+					parts = [],
+					frame = 0;
+
+				class Flame {
+					constructor(x, y) {
+						this.x = x;
+						this.y = y;
+						this.alive = true;
+						this.op = 1;
+					}
+					draw(t) {
+						if (!this.alive) return;
+						const fl = Math.sin(t * 0.12 + this.x) * 2.2,
+							h = 18 + Math.sin(t * 0.09) * 3;
+						ctx.save();
+						ctx.translate(this.x, this.y + fl * 0.35);
+						const g = ctx.createRadialGradient(0, 0, 0, 0, -h / 2, h);
+						g.addColorStop(0, `rgba(255,225,50,${this.op})`);
+						g.addColorStop(0.5, `rgba(255,115,15,${this.op * 0.8})`);
+						g.addColorStop(1, 'rgba(255,50,0,0)');
+						ctx.beginPath();
+						ctx.moveTo(0, 0);
+						ctx.bezierCurveTo(6, -h * 0.3, 8, -h * 0.6, fl, -h);
+						ctx.bezierCurveTo(-8, -h * 0.6, -6, -h * 0.3, 0, 0);
+						ctx.fillStyle = g;
+						ctx.fill();
+						const g2 = ctx.createRadialGradient(
+							0,
+							-h * 0.3,
+							0,
+							0,
+							-h * 0.3,
+							h * 0.3,
+						);
+						g2.addColorStop(0, `rgba(255,255,200,${this.op})`);
+						g2.addColorStop(1, 'rgba(255,200,50,0)');
+						ctx.beginPath();
+						ctx.ellipse(fl * 0.3, -h * 0.3, 3, 6, 0, 0, Math.PI * 2);
+						ctx.fillStyle = g2;
+						ctx.fill();
+						ctx.restore();
+					}
+					blow() {
+						this.op -= 0.065;
+						if (this.op <= 0) this.alive = false;
+					}
+				}
+
+				class Pt {
+					constructor(x, y, c) {
+						this.x = x;
+						this.y = y;
+						this.vx = (Math.random() - 0.5) * 5.5;
+						this.vy = -Math.random() * 6.5 - 1.5;
+						this.a = 1;
+						this.c = c;
+						this.r = 2 + Math.random() * 2.5;
+						this.g = 0.16 + Math.random() * 0.07;
+					}
+					upd() {
+						this.vy += this.g;
+						this.x += this.vx;
+						this.y += this.vy;
+						this.vx *= 0.98;
+						this.vy *= 0.98;
+						this.a -= 0.02;
+					}
+					draw() {
+						ctx.save();
+						ctx.globalAlpha = this.a;
+						ctx.fillStyle = this.c;
+						ctx.beginPath();
+						ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+						ctx.fill();
+						ctx.restore();
+					}
+				}
+
+				function reset() {
+					flames = [];
+					[94, 116, 138, 160, 182, 205].forEach((x) =>
+						flames.push(new Flame(x, 145)),
+					);
+					blown = false;
+					bp = 0;
+					parts = [];
+				}
+				reset();
+
+				function tap() {
+					if (!blown) {
+						blown = true;
+						flames.forEach((f) => {
+							for (let i = 0; i < 10; i++) {
+								const cols = [
+									'#f7c948',
+									'#ff6b8a',
+									'#ffb3c6',
+									'#c084fc',
+									'#fff',
+								];
+								parts.push(
+									new Pt(
+										f.x,
+										f.y,
+										cols[Math.floor(Math.random() * cols.length)],
+									),
+								);
+							}
+						});
+						triggerFireworks();
+					} else reset();
+				}
+				canvas.addEventListener('click', tap);
+				canvas.addEventListener('touchend', (e) => {
+					e.preventDefault();
+					tap();
+				});
+
+				function drawCake() {
+					ctx.clearRect(0, 0, W, H);
+					// shadow
+					ctx.beginPath();
+					ctx.ellipse(W / 2, 305, 110, 17, 0, 0, Math.PI * 2);
+					const ps = ctx.createRadialGradient(W / 2, 305, 0, W / 2, 305, 110);
+					ps.addColorStop(0, 'rgba(0,0,0,.28)');
+					ps.addColorStop(1, 'transparent');
+					ctx.fillStyle = ps;
+					ctx.fill();
+
+					function tier(x, y, w, h, c1, c2, fc, drips) {
+						ctx.beginPath();
+						ctx.roundRect(x, y, w, h, [0, 0, 12, 12]);
+						const bg = ctx.createLinearGradient(x, y, x + w, y + h);
+						bg.addColorStop(0, c1);
+						bg.addColorStop(1, c2);
+						ctx.fillStyle = bg;
+						ctx.fill();
+						ctx.beginPath();
+						ctx.roundRect(x, y - 4, w, 14, 7);
+						const fg = ctx.createLinearGradient(x, y - 4, x + w, y + 10);
+						fg.addColorStop(0, fc);
+						fg.addColorStop(0.5, '#fff8f0');
+						fg.addColorStop(1, fc);
+						ctx.fillStyle = fg;
+						ctx.fill();
+						drips.forEach((dx, i) => {
+							const dh = 9 + Math.sin(i * 1.4) * 5;
+							ctx.beginPath();
+							ctx.moveTo(dx, y + 7);
+							ctx.lineTo(dx - 4, y + 7 + dh);
+							ctx.lineTo(dx + 4, y + 7 + dh);
+							ctx.closePath();
+							ctx.fillStyle = fc;
+							ctx.fill();
+						});
+					}
+					tier(
+						55,
+						215,
+						210,
+						75,
+						'#8b1a4a',
+						'#5a0a30',
+						'#ffb3c6',
+						[72, 90, 108, 126, 144, 162, 180, 198, 228],
+					);
+					tier(
+						80,
+						153,
+						160,
+						63,
+						'#ff6b8a',
+						'#c0294a',
+						'#fff',
+						[90, 108, 126, 144, 162, 180, 218],
+					);
+					tier(
+						106,
+						100,
+						108,
+						54,
+						'#c084fc',
+						'#7c3aed',
+						'#f7c948',
+						[114, 132, 150, 168, 196],
+					);
+
+					// Text
+					ctx.save();
+					ctx.font = `bold 22px "Playfair Display",serif`;
+					ctx.fillStyle = '#fff';
+					ctx.textAlign = 'center';
+					ctx.textBaseline = 'middle';
+					ctx.shadowColor = 'rgba(255,107,138,.9)';
+					ctx.shadowBlur = 12;
+					ctx.fillText(CONFIG.age, W / 2, 232);
+					ctx.font = `italic 9px "Playfair Display",serif`;
+					ctx.shadowBlur = 5;
+					ctx.fillText(CONFIG.name.split(' ')[0], W / 2, 248);
+					ctx.restore();
+
+					// Candles
+					[104, 124, 142, 160, 178, 198].forEach((x, i) => {
+						const cg = ctx.createLinearGradient(x - 3.5, 0, x + 3.5, 0);
+						const cc = [
+							'#ff6b8a',
+							'#f7c948',
+							'#c084fc',
+							'#ff6b8a',
+							'#f7c948',
+							'#c084fc',
+						];
+						cg.addColorStop(0, cc[i]);
+						cg.addColorStop(1, '#fff');
+						ctx.fillStyle = cg;
+						ctx.beginPath();
+						ctx.roundRect(x - 3.5, 88, 7, 17, 3);
+						ctx.fill();
+						ctx.beginPath();
+						ctx.moveTo(x, 86);
+						ctx.lineTo(x, 91);
+						ctx.strokeStyle = '#222';
+						ctx.lineWidth = 1.4;
+						ctx.stroke();
+					});
+
+					flames.forEach((f) => f.draw(frame));
+					if (blown) {
+						const s = Math.min(bp * 0.05, 2);
+						flames.forEach((f) => f.blow(s));
+						bp++;
+					}
+					parts = parts.filter((p) => p.a > 0);
+					parts.forEach((p) => {
+						p.upd();
+						p.draw();
+					});
+
+					// Stars deco
+					for (let i = 0; i < 6; i++) {
+						ctx.save();
+						ctx.translate(65 + i * 36, 260);
+						ctx.rotate(frame * 0.02 * (i % 2 ? 1 : -1));
+						ctx.fillStyle = `rgba(247,201,72,${0.3 + Math.sin(frame * 0.05 + i) * 0.22})`;
+						ctx.font = '10px serif';
+						ctx.textAlign = 'center';
+						ctx.fillText('✦', 0, 0);
+						ctx.restore();
+					}
+					frame++;
+					requestAnimationFrame(drawCake);
+				}
+				drawCake();
+			})();
+
+			// ═══════════════════════════════════════
+			// FIREWORKS
+			// ═══════════════════════════════════════
+			(function () {
+				const canvas = document.getElementById('fw-canvas');
+				const ctx = canvas.getContext('2d');
+				let W, H;
+				const fws = [];
+				function resize() {
+					W = canvas.width = innerWidth;
+					H = canvas.height = innerHeight;
+				}
+				resize();
+				window.addEventListener('resize', resize);
+
+				class FW {
+					constructor() {
+						this.x = Math.random() * W;
+						this.y = H;
+						this.tx = W * 0.1 + Math.random() * W * 0.8;
+						this.ty = H * 0.08 + Math.random() * H * 0.5;
+						const s = 6 + Math.random() * 5,
+							a = Math.atan2(this.ty - this.y, this.tx - this.x);
+						this.vx = Math.cos(a) * s;
+						this.vy = Math.sin(a) * s;
+						this.alpha = 1;
+						this.exploded = false;
+						this.parts = [];
+						this.color = `hsl(${Math.random() * 360},100%,70%)`;
+					}
+					update() {
+						if (!this.exploded) {
+							this.x += this.vx;
+							this.y += this.vy;
+							if (
+								Math.abs(this.x - this.tx) < 12 &&
+								Math.abs(this.y - this.ty) < 12
+							) {
+								this.exploded = true;
+								for (let i = 0; i < 80; i++) {
+									const a = (i / 80) * Math.PI * 2,
+										s = 2 + Math.random() * 4;
+									this.parts.push({
+										x: this.x,
+										y: this.y,
+										vx: Math.cos(a) * s,
+										vy: Math.sin(a) * s,
+										alpha: 1,
+										color: this.color,
+										r: 2 + Math.random() * 2,
+										g: 0.05 + Math.random() * 0.05,
+									});
+								}
+							}
+						} else {
+							this.parts.forEach((p) => {
+								p.vy += p.g;
+								p.x += p.vx;
+								p.y += p.vy;
+								p.vx *= 0.98;
+								p.vy *= 0.98;
+								p.alpha -= 0.015;
+							});
+							this.parts = this.parts.filter((p) => p.alpha > 0);
+							if (!this.parts.length) this.alpha = 0;
+						}
+					}
+					draw() {
+						if (!this.exploded) {
+							ctx.beginPath();
+							ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+							ctx.fillStyle = this.color;
+							ctx.fill();
+						}
+						this.parts.forEach((p) => {
+							ctx.save();
+							ctx.globalAlpha = p.alpha;
+							ctx.beginPath();
+							ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+							ctx.fillStyle = p.color;
+							ctx.fill();
+							ctx.restore();
+						});
+					}
+				}
+
+				let fwInt;
+				window.triggerFireworks = function () {
+					let c = 0;
+					clearInterval(fwInt);
+					fwInt = setInterval(() => {
+						fws.push(new FW());
+						if (++c > 22) clearInterval(fwInt);
+					}, 180);
+				};
+
+				(function loop() {
+					requestAnimationFrame(loop);
+					if (!fws.length) return;
+					ctx.clearRect(0, 0, W, H);
+					for (let i = fws.length - 1; i >= 0; i--) {
+						fws[i].update();
+						fws[i].draw();
+						if (fws[i].alpha <= 0) fws.splice(i, 1);
+					}
+				})();
+			})();
+
+			// ═══════════════════════════════════════
+			// MUSIC — Web Audio API (real sound!)
+			// ═══════════════════════════════════════
+			let audioCtx = null,
+				isPlaying = false,
+				noteIdx = 0,
+				nextNoteTime = 0,
+				schedId = null;
+
+			const BPM = 74,
+				BEAT = 60 / BPM;
+			// Happy Birthday melody — [note, octave, duration in beats]
+			const MELODY = [
+				['C', 4, 0.75],
+				['C', 4, 0.25],
+				['D', 4, 1],
+				['C', 4, 1],
+				['F', 4, 1],
+				['E', 4, 2],
+				['C', 4, 0.75],
+				['C', 4, 0.25],
+				['D', 4, 1],
+				['C', 4, 1],
+				['G', 4, 1],
+				['F', 4, 2],
+				['C', 4, 0.75],
+				['C', 4, 0.25],
+				['C', 5, 1],
+				['A', 4, 1],
+				['F', 4, 1],
+				['E', 4, 1],
+				['D', 4, 2],
+				['Bb', 4, 0.75],
+				['Bb', 4, 0.25],
+				['A', 4, 1],
+				['F', 4, 1],
+				['G', 4, 1],
+				['F', 4, 2.5],
+			];
+
+			function n2hz(name, oct) {
+				const m = {
+					C: 0,
+					'C#': 1,
+					Db: 1,
+					D: 2,
+					'D#': 3,
+					Eb: 3,
+					E: 4,
+					F: 5,
+					'F#': 6,
+					Gb: 6,
+					G: 7,
+					'G#': 8,
+					Ab: 8,
+					A: 9,
+					'A#': 10,
+					Bb: 10,
+					B: 11,
+				};
+				return 440 * Math.pow(2, (m[name] + (oct - 4) * 12 - 9) / 12);
+			}
+
+			function playNote(hz, start, dur, ac) {
+				const osc1 = ac.createOscillator(),
+					osc2 = ac.createOscillator(),
+					gain = ac.createGain();
+				osc1.type = 'triangle';
+				osc1.frequency.value = hz;
+				osc2.type = 'sine';
+				osc2.frequency.value = hz * 2;
+				const g2 = ac.createGain();
+				g2.gain.value = 0.12;
+				osc2.connect(g2);
+				g2.connect(gain);
+				gain.gain.setValueAtTime(0, start);
+				gain.gain.linearRampToValueAtTime(0.3, start + 0.025);
+				gain.gain.setValueAtTime(0.3, start + dur * 0.55);
+				gain.gain.exponentialRampToValueAtTime(0.001, start + dur * 0.92);
+				osc1.connect(gain);
+				gain.connect(ac.destination);
+				osc1.start(start);
+				osc1.stop(start + dur + 0.05);
+				osc2.start(start);
+				osc2.stop(start + dur + 0.05);
+			}
+
+			function sched() {
+				if (!isPlaying) return;
+				while (nextNoteTime < audioCtx.currentTime + 0.35) {
+					const [name, oct, dur] = MELODY[noteIdx % MELODY.length];
+					playNote(n2hz(name, oct), nextNoteTime, dur * BEAT * 0.88, audioCtx);
+					nextNoteTime += dur * BEAT;
+					noteIdx++;
+					if (noteIdx >= MELODY.length) {
+						noteIdx = 0;
+						nextNoteTime += BEAT * 0.4;
+					}
+				}
+				schedId = setTimeout(sched, 100);
+			}
+
+			async function toggleMusic() {
+				const btn = document.getElementById('playBtn');
+				const bars = document.querySelectorAll('.bar');
+				if (!isPlaying) {
+					if (!audioCtx)
+						audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+					if (audioCtx.state === 'suspended') await audioCtx.resume();
+					isPlaying = true;
+					nextNoteTime = audioCtx.currentTime + 0.08;
+					noteIdx = 0;
+					sched();
+					btn.textContent = '⏸';
+					bars.forEach((b) => b.classList.add('active'));
+				} else {
+					isPlaying = false;
+					clearTimeout(schedId);
+					btn.textContent = '▶';
+					bars.forEach((b) => b.classList.remove('active'));
+				}
+			}
+
+			// Override with custom song URL if provided
+			if (CONFIG.customSongUrl) {
+				const audio = new Audio(CONFIG.customSongUrl);
+				audio.loop = true;
+				audio.volume = 0.75;
+				window.toggleMusic = async function () {
+					const btn = document.getElementById('playBtn');
+					const bars = document.querySelectorAll('.bar');
+					if (audio.paused) {
+						await audio.play();
+						btn.textContent = '⏸';
+						bars.forEach((b) => b.classList.add('active'));
+						onMusicPlay();
+					} else {
+						audio.pause();
+						btn.textContent = '▶';
+						bars.forEach((b) => b.classList.remove('active'));
+						onMusicPause();
+					}
+				};
+			}
+
+			// ═══════════════════════════════════════
+			// LYRICS ENGINE
+			// ═══════════════════════════════════════
+			const LYRICS = [
+				{
+					label: 'Verse',
+					lines: [
+						'Six years ago beneath a different sky',
+						'I found the one who made the whole world shine',
+						'Htet Htet Aung, you were a quiet dream',
+						"The most beautiful thing I'd ever seen",
+					],
+				},
+				{
+					label: 'Chorus',
+					lines: [
+						'Happy birthday my love, twenty-three today',
+						"You're my Nara night, you're so far away",
+						'Like sakura falling, soft and white',
+						"You're my everything, my favourite light",
+					],
+				},
+				{
+					label: 'Verse 2',
+					lines: [
+						'Among the deer and lanterns, cherry trees in bloom',
+						'I feel you even from across the moon',
+						'Six years of stories written in the stars',
+						'No ocean wide enough to keep us apart',
+					],
+				},
+				{
+					label: 'Chorus',
+					lines: [
+						'Happy birthday my love, twenty-three today',
+						"You're my Nara night, you're so far away",
+						'Like sakura falling, soft and white',
+						"You're my everything, my favourite light",
+					],
+				},
+				{
+					label: 'Outro',
+					lines: [
+						'Happy birthday, Htet Htet Aung',
+						'May Nara keep you safe and warm',
+						'Until I hold you once again 🌸',
+					],
+				},
+			];
+
+			// Build lyrics DOM
+			const lyricsContainer = document.getElementById('lyrics-lines');
+			const allLyricLines = [];
+			LYRICS.forEach((block) => {
+				const blockEl = document.createElement('div');
+				blockEl.className = 'ly-block';
+				const labelEl = document.createElement('div');
+				labelEl.className = 'ly-label';
+				labelEl.textContent = block.label;
+				blockEl.appendChild(labelEl);
+				block.lines.forEach((text) => {
+					const line = document.createElement('div');
+					line.className = 'ly-line';
+					line.textContent = text;
+					blockEl.appendChild(line);
+					allLyricLines.push(line);
+				});
+				lyricsContainer.appendChild(blockEl);
+			});
+
+			// Add vinyl + waveform decoration
+			document.getElementById('lyrics-paused').insertAdjacentHTML(
+				'beforeend',
+				`
+  <div class="vinyl" id="vinyl-disc">
+    <div class="vinyl-label">🎵</div>
+  </div>
+`,
+			);
+
+			// Lyric cycling
+			let lyricIdx = 0,
+				lyricTimer = null;
+			const LINE_DURATION = 3000; // ms per line
+
+			function startLyrics() {
+				lyricIdx = 0;
+				allLyricLines.forEach((l) => {
+					l.classList.remove('active', 'past');
+				});
+				advanceLyric();
+			}
+
+			function advanceLyric() {
+				if (!isPlaying) return;
+				allLyricLines.forEach((l, i) => {
+					l.classList.remove('active', 'past');
+					if (i < lyricIdx) l.classList.add('past');
+				});
+				if (lyricIdx < allLyricLines.length) {
+					allLyricLines[lyricIdx].classList.add('active');
+					// Smooth scroll the active line into view inside the section
+					allLyricLines[lyricIdx].scrollIntoView({
+						behavior: 'smooth',
+						block: 'nearest',
+					});
+					lyricTimer = setTimeout(() => {
+						lyricIdx++;
+						advanceLyric();
+					}, LINE_DURATION);
+				} else {
+					// Loop back
+					setTimeout(() => {
+						if (isPlaying) {
+							lyricIdx = 0;
+							startLyrics();
+						}
+					}, 1500);
+				}
+			}
+
+			function stopLyrics() {
+				clearTimeout(lyricTimer);
+				allLyricLines.forEach((l) => l.classList.remove('active', 'past'));
+				lyricIdx = 0;
+			}
+
+			function onMusicPlay() {
+				document.getElementById('lyrics-paused').classList.add('hidden');
+				document.getElementById('lyrics-playing').classList.add('visible');
+				document.getElementById('vinyl-disc').classList.add('spinning');
+				startLyrics();
+				spawnMusicNotes();
+			}
+
+			function onMusicPause() {
+				document.getElementById('lyrics-paused').classList.remove('hidden');
+				document.getElementById('lyrics-playing').classList.remove('visible');
+				document.getElementById('vinyl-disc').classList.remove('spinning');
+				stopLyrics();
+			}
+
+			// Patch the original toggleMusic to call hooks
+			const _origToggle = window.toggleMusic;
+			window.toggleMusic = async function () {
+				const wasPlaying = isPlaying;
+				await _origToggle();
+				if (!wasPlaying) onMusicPlay();
+				else onMusicPause();
+			};
+
+			// Floating music notes
+			function spawnMusicNotes() {
+				if (!isPlaying) return;
+				const section = document.getElementById('lyrics-section');
+				const notes = ['♩', '♪', '♫', '♬', '🎵', '🎶'];
+				const n = document.createElement('div');
+				const x = 10 + Math.random() * 80;
+				const sz = 14 + Math.random() * 18;
+				n.style.cssText = `
+    position:absolute;left:${x}%;bottom:${10 + Math.random() * 30}%;
+    font-size:${sz}px;color:rgba(255,107,138,${0.3 + Math.random() * 0.5});
+    animation:noteFloat ${2 + Math.random() * 3}s ease forwards;
+    pointer-events:none;z-index:5;
+  `;
+				n.textContent = notes[Math.floor(Math.random() * notes.length)];
+				section.appendChild(n);
+				setTimeout(() => n.remove(), 5000);
+				if (isPlaying) setTimeout(spawnMusicNotes, 600 + Math.random() * 800);
+			}
+
+			// ═══════════════════════════════════════
+			// LYRICS BACKGROUND CANVAS — aurora waves
+			// ═══════════════════════════════════════
+			(function () {
+				const canvas = document.getElementById('lyrics-bg-canvas');
+				const ctx = canvas.getContext('2d');
+				let W,
+					H,
+					t = 0;
+
+				function resize() {
+					W = canvas.width = canvas.offsetWidth;
+					H = canvas.height = canvas.offsetHeight;
+				}
+				resize();
+				window.addEventListener('resize', resize);
+
+				function drawAurora() {
+					ctx.clearRect(0, 0, W, H);
+					// Deep bg
+					ctx.fillStyle = '#0d0020';
+					ctx.fillRect(0, 0, W, H);
+
+					// Aurora waves
+					const waves = [
+						{
+							color: 'rgba(255,107,138,',
+							speed: 0.4,
+							amp: 60,
+							freq: 0.008,
+							phase: 0,
+						},
+						{
+							color: 'rgba(192,132,252,',
+							speed: 0.3,
+							amp: 45,
+							freq: 0.006,
+							phase: 2,
+						},
+						{
+							color: 'rgba(247,201,72,',
+							speed: 0.5,
+							amp: 35,
+							freq: 0.01,
+							phase: 4,
+						},
+					];
+
+					waves.forEach((w) => {
+						ctx.beginPath();
+						for (let x = 0; x <= W; x += 2) {
+							const y =
+								H * 0.5 +
+								Math.sin(x * w.freq + t * w.speed + w.phase) * w.amp +
+								Math.sin(x * w.freq * 2.3 + t * w.speed * 1.4) *
+									w.amp *
+									0.4;
+							x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+						}
+						ctx.lineTo(W, H);
+						ctx.lineTo(0, H);
+						ctx.closePath();
+						const g = ctx.createLinearGradient(0, 0, 0, H);
+						g.addColorStop(0, w.color + '0)');
+						g.addColorStop(0.4, w.color + '.06)');
+						g.addColorStop(0.7, w.color + '.03)');
+						g.addColorStop(1, w.color + '0)');
+						ctx.fillStyle = g;
+						ctx.fill();
+					});
+
+					// Glowing orbs drifting
+					const orbCount = 6;
+					for (let i = 0; i < orbCount; i++) {
+						const ox =
+							W * 0.15 +
+							((W * 0.7) / orbCount) * i +
+							Math.sin(t * 0.2 + i * 1.3) * 30;
+						const oy = H * 0.4 + Math.cos(t * 0.15 + i * 0.9) * 50;
+						const r = 40 + Math.sin(t * 0.1 + i) * 15;
+						const colors = ['255,107,138', '192,132,252', '247,201,72'];
+						const og = ctx.createRadialGradient(ox, oy, 0, ox, oy, r);
+						og.addColorStop(0, `rgba(${colors[i % 3]},.08)`);
+						og.addColorStop(1, `rgba(${colors[i % 3]},0)`);
+						ctx.fillStyle = og;
+						ctx.beginPath();
+						ctx.arc(ox, oy, r, 0, Math.PI * 2);
+						ctx.fill();
+					}
+
+					t += 0.015;
+					requestAnimationFrame(drawAurora);
+				}
+				drawAurora();
+			})();
+
+			// ═══════════════════════════════════════
+			function updateCD() {
+				const target = new Date(CONFIG.birthday + 'T00:00:00'),
+					diff = target - new Date();
+				const el = document.getElementById('countdown');
+				if (diff <= 0) {
+					el.innerHTML = `<div class="cd-box"><div class="cd-num">🎉</div><div class="cd-label">Today!</div></div>`;
+					return;
+				}
+				const d = Math.floor(diff / 864e5),
+					h = Math.floor((diff % 864e5) / 36e5),
+					m = Math.floor((diff % 36e5) / 6e4),
+					s = Math.floor((diff % 6e4) / 1e3);
+				el.innerHTML = [
+					['Days', d],
+					['Hours', h],
+					['Mins', m],
+					['Secs', s],
+				]
+					.map(
+						([l, v]) =>
+							`<div class="cd-box"><div class="cd-num">${String(v).padStart(2, '0')}</div><div class="cd-label">${l}</div></div>`,
+					)
+					.join('');
+			}
+			updateCD();
+			setInterval(updateCD, 1000);
+
+			// ═══════════════════════════════════════
+			// SCROLL REVEAL
+			// ═══════════════════════════════════════
+			const obs = new IntersectionObserver(
+				(entries) =>
+					entries.forEach((e) => {
+						if (e.isIntersecting) e.target.classList.add('vis');
+					}),
+				{ threshold: 0.1 },
+			);
+			document.querySelectorAll('.reveal,.tl-item').forEach((el) => obs.observe(el));
+
+			// ═══════════════════════════════════════
+			// CONFETTI + CHERRY PETALS
+			// ═══════════════════════════════════════
+			function spawnConfetti() {
+				const cols = ['#ff6b8a', '#f7c948', '#c084fc', '#ffb3c6', '#fff', '#a8e6a3'];
+				for (let i = 0; i < 65; i++) {
+					setTimeout(() => {
+						const c = document.createElement('div');
+						const sz = 5 + Math.random() * 9;
+						c.style.cssText = `position:fixed;top:-20px;left:${Math.random() * 100}vw;width:${sz}px;height:${sz}px;background:${cols[Math.floor(Math.random() * cols.length)]};border-radius:${Math.random() > 0.5 ? '50%' : '2px'};animation:confettiFall ${3 + Math.random() * 4}s ease forwards;z-index:9999;pointer-events:none;transform:rotate(${Math.random() * 360}deg);`;
+						document.body.appendChild(c);
+						setTimeout(() => c.remove(), 8000);
+					}, i * 52);
+				}
+			}
+
+			function spawnCherryPetals() {
+				const cc = document.getElementById('cherry-container');
+				function one() {
+					const p = document.createElement('div');
+					const sz = 4 + Math.random() * 7;
+					p.style.cssText = `position:absolute;top:-10px;left:${Math.random() * 100}%;width:${sz}px;height:${sz * 0.6}px;background:rgba(255,182,193,.82);border-radius:50%;animation:cherryFall ${3 + Math.random() * 5}s linear forwards;pointer-events:none;`;
+					cc.appendChild(p);
+					setTimeout(() => p.remove(), 9000);
+				}
+				for (let i = 0; i < 15; i++) setTimeout(one, i * 180);
+				setInterval(one, 500);
+			}
+
+			// Touch ripple
+			function ripple(x, y) {
+				const r = document.createElement('div');
+				r.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:4px;height:4px;border-radius:50%;background:rgba(255,107,138,.45);transform:translate(-50%,-50%) scale(0);animation:rippleOut .6s ease forwards;pointer-events:none;z-index:9998;`;
+				document.body.appendChild(r);
+				setTimeout(() => r.remove(), 700);
+			}
+			document.addEventListener(
+				'touchstart',
+				(e) => ripple(e.touches[0].clientX, e.touches[0].clientY),
+				{ passive: true },
+			);
+			document.addEventListener('click', (e) => {
+				if (!['cake-canvas', 'playBtn'].includes(e.target.id))
+					ripple(e.clientX, e.clientY);
+			});
+
+			// Ripple keyframe
+			const style = document.createElement('style');
+			style.textContent =
+				'@keyframes rippleOut{to{transform:translate(-50%,-50%) scale(30);opacity:0}}';
+			document.head.appendChild(style);
+
+			// Init on load
+			window.addEventListener('load', () => {
+				setTimeout(spawnConfetti, 1100);
+				setTimeout(triggerFireworks, 1700);
+				spawnCherryPetals();
+			});
+		</script>
+	</body>
+</html>
